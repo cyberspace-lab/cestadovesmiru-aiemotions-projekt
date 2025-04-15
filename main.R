@@ -3,19 +3,13 @@ library(stringr)
 library(tidyr)
 library(ggplot2)
 
-json_results <- jsonlite::fromJSON("data/AI Emoce.csv")
-df_results <- read.csv("data/results.csv")
-
-df_results <- as.data.frame(json_results$Data)
-str(df_results)
-
+json_results <- jsonlite::fromJSON("data/AI Emoce.json")
+df_results <- json_results$Data
 colnames(df_results)
 
 # the table is tructured in a way that each emotion has three columns: emotion felt, intesity and realism
 # THe columns are named "columnnbame_emotion_image"
 # I need to pivot longer, but each row should be the values for the single image - emotion, intensity and realism
-
-
 
 # for eadh column which starts with emotion_ encode the values which are a list to a string concatenated with ,
 for (col in colnames(df_results)){
